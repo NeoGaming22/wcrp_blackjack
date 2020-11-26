@@ -155,33 +155,32 @@ function payBet(playerId, money, condition)
     --SCRIVERE EVENTO CHE DA SOLDI AL CLIENT LA QUANTITA' E' QUESTA
     print(tostring(money) .. " " .. tostring(condition))
     if condition == "lose" then
-        local User = VorpCore.getUser(playerId) 
-        local Character = User.getUsedCharacter            
-        if Character ~= nil then    
-            --Character.removeMoney(money)
-            if money > 0 then
-                VorpInv.subItem(playerId, "chips", money)
+        local User = VorpCore.getUser(playerId)
+        if User ~= nil then
+            local Character = User.getUsedCharacter
+            if Character ~= nil then
+                --Character.removeMoney(money)
+                if money > 0 then
+                    VorpInv.subItem(playerId, "chips", money)
                 --TriggerClientEvent("vorp_notification:start", playerId, "Hai perso " .. tostring(money) .. " fiches!", 3, "error")
+                end
             end
         end
-      
     elseif condition == "win" then
         --AGGIUNGERE QUESTA QUANTITA' DI SOLDI : money
-        local User = VorpCore.getUser(playerId) 
-        local Character = User.getUsedCharacter 
-        if Character ~= nil then
-            --Character.addMoney(money)
-            if money > 0 then
-                VorpInv.addItem(playerId, "chips2", money)
+        local User = VorpCore.getUser(playerId)
+        if User ~= nil then
+            local Character = User.getUsedCharacter
+            if Character ~= nil then
+                --Character.addMoney(money)
+                if money > 0 then
+                    VorpInv.addItem(playerId, "chips2", money)
                 --TriggerClientEvent("vorp_notification:start", playerId, "Hai ottenuto " .. tostring(money) .. " fiches!", 3, "success")
+                end
             end
-
         end
-        
     end
-
 end
-
 
 function getNumber(card,hasAce)
     local value = 0
